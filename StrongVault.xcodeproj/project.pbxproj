@@ -7,9 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2555AB2722EB04B0005D39F4 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2555AB2622EB04B0005D39F4 /* MainWindowController.swift */; };
+		2555AB2D22EB0C00005D39F4 /* CloudProviderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2555AB2C22EB0C00005D39F4 /* CloudProviderManager.swift */; };
 		2582D05822EAFCE200F0AB47 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2582D05722EAFCE200F0AB47 /* AppDelegate.swift */; };
-		2582D05A22EAFCE200F0AB47 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2582D05922EAFCE200F0AB47 /* ViewController.swift */; };
 		2582D05C22EAFCE200F0AB47 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2582D05B22EAFCE200F0AB47 /* Assets.xcassets */; };
 		2582D05F22EAFCE200F0AB47 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2582D05D22EAFCE200F0AB47 /* Main.storyboard */; };
 		BFF321F4A9F50A196B27791A /* Pods_StrongVault.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7112E1D841ABE1FD4625C8F8 /* Pods_StrongVault.framework */; };
@@ -17,10 +16,9 @@
 
 /* Begin PBXFileReference section */
 		17682E8C3F6AB8CEA2694FEC /* Pods-StrongVault.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StrongVault.release.xcconfig"; path = "Target Support Files/Pods-StrongVault/Pods-StrongVault.release.xcconfig"; sourceTree = "<group>"; };
-		2555AB2622EB04B0005D39F4 /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
+		2555AB2C22EB0C00005D39F4 /* CloudProviderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudProviderManager.swift; sourceTree = "<group>"; };
 		2582D05422EAFCE200F0AB47 /* StrongVault.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StrongVault.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2582D05722EAFCE200F0AB47 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2582D05922EAFCE200F0AB47 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		2582D05B22EAFCE200F0AB47 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2582D05E22EAFCE200F0AB47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2582D06022EAFCE200F0AB47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -41,17 +39,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2555AB2822EB066A005D39F4 /* Toolbar */ = {
+		2555AB2B22EB0B04005D39F4 /* CloudProviders */ = {
 			isa = PBXGroup;
 			children = (
+				2555AB2C22EB0C00005D39F4 /* CloudProviderManager.swift */,
 			);
-			path = Toolbar;
+			path = CloudProviders;
 			sourceTree = "<group>";
 		};
 		2582D04B22EAFCE200F0AB47 = {
 			isa = PBXGroup;
 			children = (
-				2555AB2822EB066A005D39F4 /* Toolbar */,
+				2555AB2B22EB0B04005D39F4 /* CloudProviders */,
 				2582D05622EAFCE200F0AB47 /* StrongVault */,
 				2582D05522EAFCE200F0AB47 /* Products */,
 				6DE58185F8074E214F5F6BCA /* Pods */,
@@ -71,12 +70,10 @@
 			isa = PBXGroup;
 			children = (
 				2582D05722EAFCE200F0AB47 /* AppDelegate.swift */,
-				2582D05922EAFCE200F0AB47 /* ViewController.swift */,
 				2582D05B22EAFCE200F0AB47 /* Assets.xcassets */,
 				2582D05D22EAFCE200F0AB47 /* Main.storyboard */,
 				2582D06022EAFCE200F0AB47 /* Info.plist */,
 				2582D06122EAFCE200F0AB47 /* StrongVault.entitlements */,
-				2555AB2622EB04B0005D39F4 /* MainWindowController.swift */,
 			);
 			path = StrongVault;
 			sourceTree = "<group>";
@@ -194,9 +191,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2582D05A22EAFCE200F0AB47 /* ViewController.swift in Sources */,
 				2582D05822EAFCE200F0AB47 /* AppDelegate.swift in Sources */,
-				2555AB2722EB04B0005D39F4 /* MainWindowController.swift in Sources */,
+				2555AB2D22EB0C00005D39F4 /* CloudProviderManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
