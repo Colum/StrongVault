@@ -35,6 +35,13 @@ protocol CloudProviderProtocol {
     func signOut() -> Bool
     func uploadPart(name: String, data: Data)
     func downloadPart(name: String) -> Data
-    // func image() -> NSImage
+    var storageProviderType: AvailableStorageProviders { get set }
+    // func providerImage() -> Image
+}
+
+
+enum AvailableStorageProviders: String {
+    case Dropbox = "Dropbox"
+    case pCloud = "pCloud"
 }
 
