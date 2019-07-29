@@ -12,10 +12,14 @@ class PreferencesViewController: NSViewController, NSTableViewDataSource {
     
     var val = ["banana", "pear", "apple"]
     
+    @IBOutlet weak var partsPerFileTextField: NSTextField!
     @IBOutlet weak var TableView: NSScrollView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let integerFormatter = IntegerOnlyValueFormatter()
+        partsPerFileTextField.formatter = integerFormatter
     }
 
     

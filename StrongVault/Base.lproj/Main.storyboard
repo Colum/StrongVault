@@ -90,7 +90,7 @@
         <scene sceneID="kaY-us-kyW">
             <objects>
                 <viewController title="Preferences" id="d7J-2P-yEz" customClass="PreferencesViewController" customModule="StrongVault" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" misplaced="YES" id="afR-oY-wR5">
+                    <view key="view" id="afR-oY-wR5">
                         <rect key="frame" x="0.0" y="0.0" width="455" height="324"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
@@ -255,6 +255,7 @@
                     </view>
                     <connections>
                         <outlet property="TableView" destination="mwN-AK-qIX" id="izC-hA-n48"/>
+                        <outlet property="partsPerFileTextField" destination="6B7-S1-aOj" id="bzh-e2-Svc"/>
                     </connections>
                 </viewController>
                 <customObject id="yUm-Y6-wA6" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
