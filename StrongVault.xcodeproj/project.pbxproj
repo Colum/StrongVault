@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		250DD8A422EF166700459635 /* IntegerOnlyValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250DD8A322EF166700459635 /* IntegerOnlyValueFormatter.swift */; };
+		254152F122F3404E00E3AD76 /* PreferencesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254152F022F3404E00E3AD76 /* PreferencesManager.swift */; };
+		254152F322F34CF500E3AD76 /* NewCloudProviderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254152F222F34CF500E3AD76 /* NewCloudProviderViewController.swift */; };
 		2555AB2D22EB0C00005D39F4 /* CloudProviderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2555AB2C22EB0C00005D39F4 /* CloudProviderManager.swift */; };
 		255B840222EC4E3100AF462B /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255B840122EC4E3100AF462B /* PreferencesViewController.swift */; };
 		2582D05822EAFCE200F0AB47 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2582D05722EAFCE200F0AB47 /* AppDelegate.swift */; };
@@ -19,6 +21,8 @@
 /* Begin PBXFileReference section */
 		17682E8C3F6AB8CEA2694FEC /* Pods-StrongVault.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StrongVault.release.xcconfig"; path = "Target Support Files/Pods-StrongVault/Pods-StrongVault.release.xcconfig"; sourceTree = "<group>"; };
 		250DD8A322EF166700459635 /* IntegerOnlyValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegerOnlyValueFormatter.swift; sourceTree = "<group>"; };
+		254152F022F3404E00E3AD76 /* PreferencesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesManager.swift; sourceTree = "<group>"; };
+		254152F222F34CF500E3AD76 /* NewCloudProviderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCloudProviderViewController.swift; sourceTree = "<group>"; };
 		2555AB2C22EB0C00005D39F4 /* CloudProviderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudProviderManager.swift; sourceTree = "<group>"; };
 		255B840122EC4E3100AF462B /* PreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
 		2582D05422EAFCE200F0AB47 /* StrongVault.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StrongVault.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -64,6 +68,8 @@
 			children = (
 				255B840122EC4E3100AF462B /* PreferencesViewController.swift */,
 				250DD8A322EF166700459635 /* IntegerOnlyValueFormatter.swift */,
+				254152F022F3404E00E3AD76 /* PreferencesManager.swift */,
+				254152F222F34CF500E3AD76 /* NewCloudProviderViewController.swift */,
 			);
 			path = Preferences;
 			sourceTree = "<group>";
@@ -213,9 +219,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				254152F122F3404E00E3AD76 /* PreferencesManager.swift in Sources */,
 				2582D05822EAFCE200F0AB47 /* AppDelegate.swift in Sources */,
 				2555AB2D22EB0C00005D39F4 /* CloudProviderManager.swift in Sources */,
 				255B840222EC4E3100AF462B /* PreferencesViewController.swift in Sources */,
+				254152F322F34CF500E3AD76 /* NewCloudProviderViewController.swift in Sources */,
 				250DD8A422EF166700459635 /* IntegerOnlyValueFormatter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

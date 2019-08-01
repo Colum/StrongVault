@@ -119,10 +119,6 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sPM-jx-R4o">
-                                <rect key="frame" x="385" y="262" width="19" height="27"/>
-                                <stepperCell key="cell" continuous="YES" alignment="left" maxValue="100" id="kJI-f0-bKh"/>
-                            </stepper>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sZq-vH-3aH">
                                 <rect key="frame" x="40" y="244" width="116" height="17"/>
                                 <constraints>
@@ -215,7 +211,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="addCloudProvider:" target="d7J-2P-yEz" id="XyS-v4-qwS"/>
+                                    <segue destination="7zA-2N-T1A" kind="sheet" id="N3m-yG-u3l"/>
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HEL-cg-gW6" userLabel="Remove CP">
@@ -236,15 +232,11 @@
                         <constraints>
                             <constraint firstItem="HEL-cg-gW6" firstAttribute="top" secondItem="mwN-AK-qIX" secondAttribute="bottom" constant="8" id="10A-dV-E59"/>
                             <constraint firstItem="HEL-cg-gW6" firstAttribute="leading" secondItem="afR-oY-wR5" secondAttribute="leading" constant="60" id="5kv-HI-0SI"/>
-                            <constraint firstItem="sPM-jx-R4o" firstAttribute="top" secondItem="afR-oY-wR5" secondAttribute="top" constant="37" id="6Pe-yq-Piz"/>
                             <constraint firstItem="mwN-AK-qIX" firstAttribute="leading" secondItem="afR-oY-wR5" secondAttribute="leading" constant="42" id="EiH-Fx-v2g"/>
-                            <constraint firstItem="mwN-AK-qIX" firstAttribute="top" secondItem="sPM-jx-R4o" secondAttribute="bottom" constant="26" id="FYA-UP-V4o"/>
                             <constraint firstAttribute="trailing" secondItem="6B7-S1-aOj" secondAttribute="trailing" constant="54" id="JCQ-54-JnG"/>
                             <constraint firstItem="sZq-vH-3aH" firstAttribute="top" secondItem="ccG-hh-twQ" secondAttribute="bottom" constant="9" id="UdO-lO-s4e"/>
                             <constraint firstItem="mwN-AK-qIX" firstAttribute="top" secondItem="sZq-vH-3aH" secondAttribute="bottom" constant="6" id="aGL-3e-tbj"/>
-                            <constraint firstItem="sPM-jx-R4o" firstAttribute="leading" secondItem="ccG-hh-twQ" secondAttribute="trailing" constant="208" id="aoZ-w4-Kjo"/>
                             <constraint firstItem="6B7-S1-aOj" firstAttribute="top" secondItem="afR-oY-wR5" secondAttribute="top" constant="37" id="ci9-aS-Vi3"/>
-                            <constraint firstAttribute="trailing" secondItem="sPM-jx-R4o" secondAttribute="trailing" constant="54" id="fqf-s8-aKV"/>
                             <constraint firstItem="ld8-2R-Ra4" firstAttribute="top" secondItem="mwN-AK-qIX" secondAttribute="bottom" constant="8" id="gWq-l3-tQo"/>
                             <constraint firstItem="sZq-vH-3aH" firstAttribute="leading" secondItem="afR-oY-wR5" secondAttribute="leading" constant="42" id="rBl-da-ap7"/>
                             <constraint firstItem="ccG-hh-twQ" firstAttribute="top" secondItem="afR-oY-wR5" secondAttribute="top" constant="37" id="tO9-8W-gKL"/>
@@ -262,6 +254,55 @@
                 <userDefaultsController representsSharedInstance="YES" id="cRZ-AD-nuq"/>
             </objects>
             <point key="canvasLocation" x="75" y="1261"/>
+        </scene>
+        <!--New Cloud Provider View Controller-->
+        <scene sceneID="xcr-5i-hZo">
+            <objects>
+                <viewController id="7zA-2N-T1A" customClass="NewCloudProviderViewController" customModule="StrongVault" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="Lv7-na-2sc">
+                        <rect key="frame" x="0.0" y="0.0" width="248" height="104"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lGA-NL-g0H">
+                                <rect key="frame" x="129" y="34" width="92" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="3Gf-nH-CHw"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" title="Dropbox" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="RHX-7s-Y2r">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="addDropBox:" target="7zA-2N-T1A" id="CxO-OO-gO6"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XF9-w3-lGg">
+                                <rect key="frame" x="27" y="34" width="84" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="72" id="7ca-vN-XC1"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" title="pCloud" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5AO-Rg-ATh">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="addPCloud:" target="7zA-2N-T1A" id="mQD-if-fy5"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="XF9-w3-lGg" firstAttribute="top" secondItem="Lv7-na-2sc" secondAttribute="top" constant="42" id="01P-eo-T2d"/>
+                            <constraint firstItem="XF9-w3-lGg" firstAttribute="leading" secondItem="Lv7-na-2sc" secondAttribute="leading" constant="33" id="KaF-H0-7Ra"/>
+                            <constraint firstAttribute="trailing" secondItem="lGA-NL-g0H" secondAttribute="trailing" constant="33" id="RxC-yz-IBC"/>
+                            <constraint firstAttribute="bottom" secondItem="lGA-NL-g0H" secondAttribute="bottom" constant="41" id="VPP-O1-mU5"/>
+                            <constraint firstItem="lGA-NL-g0H" firstAttribute="top" secondItem="Lv7-na-2sc" secondAttribute="top" constant="42" id="lBl-LF-7yT"/>
+                            <constraint firstAttribute="bottom" secondItem="XF9-w3-lGg" secondAttribute="bottom" constant="41" id="x1C-au-9Rq"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <customObject id="co2-gB-yyf" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="75" y="1684"/>
         </scene>
         <!--My Files-->
         <scene sceneID="sDO-tg-DvA">
@@ -285,7 +326,7 @@
                 </viewController>
                 <customObject id="Qif-qL-IEi" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-471" y="1224"/>
+            <point key="canvasLocation" x="-471" y="1249"/>
         </scene>
         <!--Statistics-->
         <scene sceneID="agI-JU-bFq">
@@ -309,7 +350,7 @@
                 </viewController>
                 <customObject id="mZQ-W0-732" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="598" y="1224"/>
+            <point key="canvasLocation" x="598" y="1249"/>
         </scene>
     </scenes>
     <resources>

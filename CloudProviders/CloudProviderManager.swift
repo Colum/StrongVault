@@ -24,6 +24,21 @@ class CloudProviderManager {
     func addProvider(provider: CloudProviderProtocol) {
         providers.append(provider)
     }
+    
+    func unusedCloudProviderNames() -> [AvailableStorageProviders] {
+        var unusedCP: [AvailableStorageProviders] = []
+        for asp in AvailableStorageProviders.allValues {
+            unusedCP.append(asp)
+        }
+        
+        for cp in providers {
+            let cpName = cp.storageProviderType
+            if let index = unusedCP.firstIndex(of: cpName) {
+                unusedCP.remove(at: index)
+            }
+        }
+        return unusedCP
+    }
 
 }
 
@@ -43,5 +58,7 @@ protocol CloudProviderProtocol {
 enum AvailableStorageProviders: String {
     case Dropbox = "Dropbox"
     case pCloud = "pCloud"
+    
+    static let allValues = [Dropbox, pCloud]
 }
 
