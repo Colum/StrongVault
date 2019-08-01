@@ -6,5 +6,6 @@ target 'StrongVault' do
   use_frameworks!
 
   # Pods for StrongVault
+  pod 'SwiftyDropbox'
 
 end
