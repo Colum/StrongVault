@@ -12,7 +12,7 @@ class PreferencesViewController: NSViewController, NSTableViewDataSource, NSText
     
     
     @IBOutlet weak var partsPerFileTextField: NSTextField!
-    @IBOutlet weak var TableView: NSScrollView!
+    @IBOutlet weak var table: NSScrollView!
     
     
     override func viewDidLoad() {
@@ -20,6 +20,8 @@ class PreferencesViewController: NSViewController, NSTableViewDataSource, NSText
         let integerFormatter = IntegerOnlyValueFormatter()
         partsPerFileTextField.formatter = integerFormatter
         partsPerFileTextField.delegate = self
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(updateTableContent(notification:)), name: Notification.Name("cloudProviderListChange"), object: nil)
     }
     
     func controlTextDidChange(_ obj: Notification) {
@@ -42,6 +44,11 @@ class PreferencesViewController: NSViewController, NSTableViewDataSource, NSText
         return CloudProviderManager.shared.providers[row]
     }
     
-    
+    @objc func updateTableContent(notification: NSNotification) {
+        print("notification received; updating table content!")
+        // todo reload the table
+        
+    }
     
 }
+

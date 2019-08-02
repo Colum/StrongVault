@@ -27,9 +27,11 @@ class CloudProviderManager {
             print("creating dropbox manager")
             let provider = DropboxStorageProvider(type: .dropbox)
             providers.append(provider)
+            NotificationCenter.default.post(name: Notification.Name("cloudProviderListChange"), object: nil) // todo use enum for notif name
         case .pCloud:
             print("creating pcloud provider")
             let provider = PCloudStorageProvider(type: .pCloud)
+            NotificationCenter.default.post(name: Notification.Name("cloudProviderListChange"), object: nil)
             providers.append(provider)
         }
     }
