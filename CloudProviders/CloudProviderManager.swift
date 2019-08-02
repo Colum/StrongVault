@@ -21,23 +21,28 @@ class CloudProviderManager {
     }
     
     
-    func addProvider(provider: CloudProviderProtocol) {
-        providers.append(provider)
+    func createCloudProviderService(forService: AvailableStorageProviders) {
+        switch forService {
+        case .dropbox:
+            print("creating dropbox manager")
+            let provider = DropboxStorageProvider(type: .dropbox)
+            providers.append(provider)
+        case .pCloud:
+            print("creating pcloud provider")
+            let provider = PCloudStorageProvider(type: .pCloud)
+            providers.append(provider)
+        }
     }
     
-    func unusedCloudProviderNames() -> [AvailableStorageProviders] {
-        var unusedCP: [AvailableStorageProviders] = []
-        for asp in AvailableStorageProviders.allValues {
-            unusedCP.append(asp)
-        }
-        
+    func usedCloudProviderNames() -> [AvailableStorageProviders] {
+        var usedCP: [AvailableStorageProviders] = []
+
         for cp in providers {
             let cpName = cp.storageProviderType
-            if let index = unusedCP.firstIndex(of: cpName) {
-                unusedCP.remove(at: index)
-            }
+            usedCP.append(cpName)
         }
-        return unusedCP
+        
+        return usedCP
     }
 
 }
@@ -45,20 +50,17 @@ class CloudProviderManager {
 
 protocol CloudProviderProtocol {
     func name() -> String
-    func active() -> Bool
-    func signIn() -> Bool
-    func signOut() -> Bool
-    func uploadPart(name: String, data: Data)
-    func downloadPart(name: String) -> Data
+    func uploadParts(names: [String], data: [Data])
+    func downloadParts(names: [String]) -> [Data]
     var storageProviderType: AvailableStorageProviders { get set }
     // func providerImage() -> Image
 }
 
 
 enum AvailableStorageProviders: String {
-    case Dropbox = "Dropbox"
+    case dropbox = "Dropbox"
     case pCloud = "pCloud"
     
-    static let allValues = [Dropbox, pCloud]
+    static let allValues = [dropbox, pCloud]
 }
 

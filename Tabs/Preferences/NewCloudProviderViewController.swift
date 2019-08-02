@@ -7,11 +7,28 @@
 //
 
 import Cocoa
+import SwiftyDropbox
 
 class NewCloudProviderViewController: NSViewController {
 
+    @IBOutlet weak var dropBoxButton: NSButton!
+    @IBOutlet weak var pCloudButton: NSButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        disableUsedCPs()
+    }
+    
+    func disableUsedCPs() {
+        let usedCPs = CloudProviderManager.shared.usedCloudProviderNames()
+        for cp in usedCPs {
+            if cp == .dropbox {
+                dropBoxButton.isEnabled = false
+            }
+            if cp == .pCloud {
+                dropBoxButton.isEnabled = false
+            }
+        }
     }
     
     
@@ -22,7 +39,11 @@ class NewCloudProviderViewController: NSViewController {
     
     
     @IBAction func addDropBox(_ sender: Any) {
-        print("add dropbox")
+        DropboxClientsManager.authorizeFromController(sharedWorkspace: NSWorkspace.shared,
+                                                      controller: self,
+                                                      openURL: { (url: URL) -> Void in
+                                                        NSWorkspace.shared.open(url)
+        })
         self.dismiss(self)
     }
     

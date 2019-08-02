@@ -299,6 +299,10 @@
                             <constraint firstAttribute="bottom" secondItem="XF9-w3-lGg" secondAttribute="bottom" constant="41" id="x1C-au-9Rq"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="dropBoxButton" destination="lGA-NL-g0H" id="PcO-3G-OCe"/>
+                        <outlet property="pCloudButton" destination="XF9-w3-lGg" id="0h7-ai-1Ds"/>
+                    </connections>
                 </viewController>
                 <customObject id="co2-gB-yyf" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>

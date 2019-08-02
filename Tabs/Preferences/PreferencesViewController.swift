@@ -25,7 +25,6 @@ class PreferencesViewController: NSViewController, NSTableViewDataSource, NSText
     func controlTextDidChange(_ obj: Notification) {
         if obj.object as? NSTextField == partsPerFileTextField {
             if let intVal = Int(partsPerFileTextField.stringValue) {
-                print(intVal)
                 PreferencesManager.shared.partsPerFile = intVal
             }
         }
