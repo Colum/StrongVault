@@ -20,6 +20,19 @@ class CloudProviderManager {
         
     }
     
+    func removeCloudProvider(forService: AvailableStorageProviders) {
+        var removeAt = -1
+        for (index, provider) in providers.enumerated() {
+            if provider.storageProviderType == forService {
+                removeAt = index
+                break
+            }
+        }
+        if removeAt != -1 {
+            providers.remove(at: removeAt)
+        }
+    }
+    
     
     func createCloudProviderService(forService: AvailableStorageProviders) {
         var notifData: [String: AvailableStorageProviders] = [:]
@@ -31,7 +44,7 @@ class CloudProviderManager {
             
             // todo use enum for notif name and notif key
             notifData["type"] = .dropbox
-            NotificationCenter.default.post(name: Notification.Name("cloudProviderListChange"), object: nil, userInfo: notifData)
+            NotificationCenter.default.post(name: Notification.Name("NewCloudProvider"), object: nil, userInfo: notifData)
             
         case .pCloud:
             print("creating pcloud provider")
@@ -40,7 +53,7 @@ class CloudProviderManager {
             
             // todo use enum for notif name and notif key
             notifData["type"] = .pCloud
-            NotificationCenter.default.post(name: Notification.Name("cloudProviderListChange"), object: nil, userInfo: notifData)
+            NotificationCenter.default.post(name: Notification.Name("NewCloudProvider"), object: nil, userInfo: notifData)
             
         }
     }

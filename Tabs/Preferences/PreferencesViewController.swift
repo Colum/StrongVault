@@ -8,13 +8,13 @@
 
 import Cocoa
 
-class PreferencesViewController: NSViewController, NSTableViewDataSource, NSTextFieldDelegate {
+class PreferencesViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate, NSTextFieldDelegate {
     
 
     @IBOutlet weak var partsPerFileTextField: NSTextField!
     @IBOutlet weak var scrollView: NSScrollView!
     let tableView = NSTableView()
-    
+    var registeredCloudProvider: NSMutableArray! = NSMutableArray()
     
     
     override func viewDidLoad() {
@@ -23,7 +23,7 @@ class PreferencesViewController: NSViewController, NSTableViewDataSource, NSText
         partsPerFileTextField.formatter = integerFormatter
         partsPerFileTextField.delegate = self
         
-        NotificationCenter.default.addObserver(self, selector: #selector(updateTableContent(notification:)), name: Notification.Name("cloudProviderListChange"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateTableContent(notification:)), name: Notification.Name("NewCloudProvider"), object: nil)
         
         // todo do in storyboard?
         tableView.headerView?.isHidden = false
@@ -34,6 +34,10 @@ class PreferencesViewController: NSViewController, NSTableViewDataSource, NSText
         let col1 = NSTableColumn(identifier: NSUserInterfaceItemIdentifier("Name"))
         col1.headerCell = NSTableHeaderCell(textCell: "Name")
         tableView.addTableColumn(col1)
+        //
+        
+        tableView.dataSource = self
+        tableView.delegate = self
         
         scrollView.documentView = tableView
     }
@@ -48,38 +52,51 @@ class PreferencesViewController: NSViewController, NSTableViewDataSource, NSText
 
     
     @IBAction func removeCloudProvider(_ sender: NSButton) {
-        // todo
+        if tableView.selectedRow < 0 || registeredCloudProvider.count < 1{
+            print("nothing to remove")
+            return
+        }
+        
+        guard let rowToRemove = registeredCloudProvider.object(at: tableView.selectedRow) as? String else {
+            print("could not determine CP type to remove")
+            return
+        }
+
+        DispatchQueue.main.async { // update UI on separate thread
+            self.tableView.beginUpdates()
+            self.registeredCloudProvider.removeObject(at: self.tableView.selectedRow)
+            self.tableView.reloadData()
+            self.tableView.endUpdates()
+        }
+        
+        if let type = AvailableStorageProviders(rawValue: rowToRemove) {
+            CloudProviderManager.shared.removeCloudProvider(forService: type)
+        }
     }
     
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return tableView.numberOfRows
-        // return CloudProviderManager.shared.providers.count
+        return self.registeredCloudProvider.count
     }
     
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        // return CloudProviderManager.shared.providers[row]
-        return tableView.rowView(atRow: row, makeIfNecessary: false)
+        return self.registeredCloudProvider.object(at: row)
     }
     
     @objc func updateTableContent(notification: NSNotification) {
-        
-        print("notification received; updating table content!")
         if let dict = notification.userInfo as NSDictionary? {
             if let providerType = dict["type"] as? AvailableStorageProviders {
-                print(providerType)
-                let indexSet: IndexSet = IndexSet(integer: CloudProviderManager.shared.providers.count - 1)
-                
-                tableView.beginUpdates()
-                if providerType == .dropbox {
-                    tableView.insertRows(at: indexSet, withAnimation: .effectFade)
+                self.registeredCloudProvider.add(providerType.rawValue)
+                DispatchQueue.main.async { // update UI on separate thread
+                    let indexSet: IndexSet = IndexSet(integer: self.registeredCloudProvider.count - 1)
+                    self.tableView.beginUpdates()
+                    self.tableView.insertRows(at: indexSet, withAnimation: .effectFade)
+                    self.tableView.reloadData()
+                    self.tableView.endUpdates()
                 }
-                tableView.reloadData()
-                tableView.endUpdates()
             }
         }
-        
-        
     }
+    
     
 }
 
