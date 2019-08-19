@@ -43,7 +43,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     case .cancel:
                         print("Authorization flow was manually canceled by user!")
                     case .error(_, let description):
-                        print("ERROR!")
+                        print("Dropbox ERROR!")
                         print("Error: \(description)")
                     }
                 }

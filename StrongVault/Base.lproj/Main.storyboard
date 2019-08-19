@@ -248,6 +248,7 @@
                     <connections>
                         <outlet property="TableView" destination="mwN-AK-qIX" id="izC-hA-n48"/>
                         <outlet property="partsPerFileTextField" destination="6B7-S1-aOj" id="bzh-e2-Svc"/>
+                        <outlet property="scrollView" destination="mwN-AK-qIX" id="rpV-hW-Wq0"/>
                     </connections>
                 </viewController>
                 <customObject id="yUm-Y6-wA6" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
