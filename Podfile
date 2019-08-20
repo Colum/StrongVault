@@ -7,5 +7,6 @@ target 'StrongVault' do
 
   # Pods for StrongVault
   pod 'SwiftyDropbox'
+  pod 'PCloudSDKSwift'
 
 end

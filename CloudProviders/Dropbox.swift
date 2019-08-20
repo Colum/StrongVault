@@ -13,8 +13,8 @@ class DropboxStorageProvider: CloudProviderProtocol {
     var storageProviderType: AvailableStorageProviders
     var client: DropboxClient?
     
-    init(type: AvailableStorageProviders) {
-        self.storageProviderType = type
+    init() {
+        self.storageProviderType = .dropbox
         self.client = DropboxClientsManager.authorizedClient
     }
     

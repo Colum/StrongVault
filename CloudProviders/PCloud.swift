@@ -12,8 +12,8 @@ class PCloudStorageProvider: CloudProviderProtocol {
     
     var storageProviderType: AvailableStorageProviders
     
-    init(type: AvailableStorageProviders) {
-        self.storageProviderType = type
+    init() {
+        self.storageProviderType = .pCloud
     }
     
     func name() -> String {

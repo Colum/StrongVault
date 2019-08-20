@@ -8,18 +8,15 @@
 
 import Cocoa
 import SwiftyDropbox
+import PCloudSDKSwift
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        DropboxClientsManager.setupWithAppKeyDesktop("rsa0gm8pqutzdxb")
-        
-        NSAppleEventManager.shared().setEventHandler(self,
-                                                     andSelector: #selector(handleDropboxURLEvent),
-                                                     forEventClass: AEEventClass(kInternetEventClass),
-                                                     andEventID: AEEventID(kAEGetURL))
+        setupDropbox()
+        setupPCloud()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -27,6 +24,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
         return true
+    }
+    
+    func setupPCloud() {
+        PCloud.setup(appKey: "TgacIxvpqJR")
+    }
+    
+    func setupDropbox() {
+        DropboxClientsManager.setupWithAppKeyDesktop("rsa0gm8pqutzdxb")
+        
+        NSAppleEventManager.shared().setEventHandler(self,
+                                                     andSelector: #selector(handleDropboxURLEvent),
+                                                     forEventClass: AEEventClass(kInternetEventClass),
+                                                     andEventID: AEEventID(kAEGetURL))
     }
     
     

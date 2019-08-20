@@ -39,7 +39,7 @@ class CloudProviderManager {
         switch forService {
         case .dropbox:
             print("creating dropbox manager")
-            let provider = DropboxStorageProvider(type: .dropbox)
+            let provider = DropboxStorageProvider()
             providers.append(provider)
             
             // todo use enum for notif name and notif key
@@ -48,7 +48,7 @@ class CloudProviderManager {
             
         case .pCloud:
             print("creating pcloud provider")
-            let provider = PCloudStorageProvider(type: .pCloud)
+            let provider = PCloudStorageProvider()
             providers.append(provider)
             
             // todo use enum for notif name and notif key
