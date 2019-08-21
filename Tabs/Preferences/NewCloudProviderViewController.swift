@@ -29,7 +29,7 @@ class NewCloudProviderViewController: NSViewController {
                 dropBoxButton.isEnabled = false
             }
             if cp == .pCloud {
-                dropBoxButton.isEnabled = false
+                pCloudButton.isEnabled = false
             }
         }
     }
