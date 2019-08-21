@@ -19,6 +19,7 @@ class NewCloudProviderViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         disableUsedCPs()
+        listenForClose()
     }
     
     func disableUsedCPs() {
@@ -33,31 +34,13 @@ class NewCloudProviderViewController: NSViewController {
         }
     }
     
+    func listenForClose() {
+        // is there a better way to do this ?
+        NotificationCenter.default.addObserver(self, selector: #selector(close(sender:)), name: Notification.Name("CloseAddCloudProviderView"), object: nil)
+    }
     
-    @IBAction func addPCloud(_ sender: NSButton) {
-        print("pcloud auth")
-        
-        
-        let wvcp = WebViewControllerPresenterDesktop(presentingViewController: self)
-        OAuth.performAuthorizationFlow(view: wvcp,
-                                       appKey: "TgacIxvpqJR",
-                                       storeToken: { accessToken, userId in
-                                        // Store the token in a persistent storage. Or not.
-                                        print("--")
-                                        print(accessToken)
-                                        print(userId)
-        },
-                                       { result in
-                                        if case .success(let token, _) = result {
-                                            print("-__")
-                                            print(token)
-                                            let client = PCloud.createClient(accessToken: token)
-                                            // Use the client.
-                                        }
-        })
-        
-        
-        self.dismiss(self)
+    @objc func close(sender: Any) {
+        self.dismiss(sender)
     }
     
     

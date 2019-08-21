@@ -30,7 +30,10 @@ class PCloudStorageProvider: CloudProviderProtocol {
         return [d]
     }
     
-    
-    
+    func login(username: String, password: String) -> Bool? {
+        //todo
+        print("pcloud login")
+        return true
+    }
     
 }

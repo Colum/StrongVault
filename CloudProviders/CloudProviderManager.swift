@@ -34,12 +34,19 @@ class CloudProviderManager {
     }
     
     
-    func createCloudProviderService(forService: AvailableStorageProviders) {
+    func createCloudProviderService(forService: AvailableStorageProviders) -> CloudProviderProtocol? {
+        if usedCloudProviderNames().contains(forService) {
+            //service already exists
+            return nil
+        }
+        
         var notifData: [String: AvailableStorageProviders] = [:]
+        let newCP: CloudProviderProtocol
         switch forService {
         case .dropbox:
             print("creating dropbox manager")
             let provider = DropboxStorageProvider()
+            newCP = provider
             providers.append(provider)
             
             // todo use enum for notif name and notif key
@@ -49,13 +56,14 @@ class CloudProviderManager {
         case .pCloud:
             print("creating pcloud provider")
             let provider = PCloudStorageProvider()
+            newCP = provider
             providers.append(provider)
             
             // todo use enum for notif name and notif key
             notifData["type"] = .pCloud
             NotificationCenter.default.post(name: Notification.Name("NewCloudProvider"), object: nil, userInfo: notifData)
-            
         }
+        return newCP
     }
     
     func usedCloudProviderNames() -> [AvailableStorageProviders] {
@@ -68,6 +76,15 @@ class CloudProviderManager {
         
         return usedCP
     }
+    
+    func getCloudProviderService(providerType: AvailableStorageProviders) -> CloudProviderProtocol? {
+        for prov in providers {
+            if prov.storageProviderType == providerType {
+                return prov
+            }
+        }
+        return nil
+    }
 
 }
 
@@ -76,6 +93,7 @@ protocol CloudProviderProtocol {
     func name() -> String
     func uploadParts(names: [String], data: [Data])
     func downloadParts(names: [String]) -> [Data]
+    func login(username: String, password: String) -> Bool?
     var storageProviderType: AvailableStorageProviders { get set }
     // func providerImage() -> Image
 }

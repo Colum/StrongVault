@@ -10,6 +10,7 @@ import Foundation
 import SwiftyDropbox
 
 class DropboxStorageProvider: CloudProviderProtocol {
+    
     var storageProviderType: AvailableStorageProviders
     var client: DropboxClient?
     
@@ -33,6 +34,9 @@ class DropboxStorageProvider: CloudProviderProtocol {
         return [d]
     }
     
+    func login(username: String, password: String) -> Bool? {
+        return nil // required protocol method, dropbox auth is through browser and with app redirect
+    }
     
     
     
