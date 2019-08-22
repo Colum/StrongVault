@@ -13,29 +13,29 @@ class CloudProviderManager {
     
     static let shared = CloudProviderManager()
     
-    var providers: [CloudProviderProtocol] = []
+    var providerServices: [CloudProviderProtocol] = []
     
     
     init() {
         
     }
     
-    func removeCloudProvider(forService: AvailableStorageProviders) {
+    func removeCloudProviderService(forService: AvailableStorageProviders) {
         var removeAt = -1
-        for (index, provider) in providers.enumerated() {
+        for (index, provider) in providerServices.enumerated() {
             if provider.storageProviderType == forService {
                 removeAt = index
                 break
             }
         }
         if removeAt != -1 {
-            providers.remove(at: removeAt)
+            providerServices.remove(at: removeAt)
         }
     }
     
     
     func createCloudProviderService(forService: AvailableStorageProviders) -> CloudProviderProtocol? {
-        if usedCloudProviderNames().contains(forService) {
+        if usedCloudProviderServiceNames().contains(forService) {
             //service already exists
             return nil
         }
@@ -47,7 +47,7 @@ class CloudProviderManager {
             print("creating dropbox manager")
             let provider = DropboxStorageProvider()
             newCP = provider
-            providers.append(provider)
+            providerServices.append(provider)
             
             // todo use enum for notif name and notif key
             notifData["type"] = .dropbox
@@ -57,7 +57,7 @@ class CloudProviderManager {
             print("creating pcloud provider")
             let provider = PCloudStorageProvider()
             newCP = provider
-            providers.append(provider)
+            providerServices.append(provider)
             
             // todo use enum for notif name and notif key
             notifData["type"] = .pCloud
@@ -66,10 +66,10 @@ class CloudProviderManager {
         return newCP
     }
     
-    func usedCloudProviderNames() -> [AvailableStorageProviders] {
+    func usedCloudProviderServiceNames() -> [AvailableStorageProviders] {
         var usedCP: [AvailableStorageProviders] = []
 
-        for cp in providers {
+        for cp in providerServices {
             let cpName = cp.storageProviderType
             usedCP.append(cpName)
         }
@@ -78,7 +78,7 @@ class CloudProviderManager {
     }
     
     func getCloudProviderService(providerType: AvailableStorageProviders) -> CloudProviderProtocol? {
-        for prov in providers {
+        for prov in providerServices {
             if prov.storageProviderType == providerType {
                 return prov
             }

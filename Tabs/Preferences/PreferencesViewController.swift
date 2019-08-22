@@ -70,7 +70,7 @@ class PreferencesViewController: NSViewController, NSTableViewDataSource, NSTabl
         }
         
         if let type = AvailableStorageProviders(rawValue: rowToRemove) {
-            CloudProviderManager.shared.removeCloudProvider(forService: type)
+            CloudProviderManager.shared.removeCloudProviderService(forService: type)
         }
     }
     

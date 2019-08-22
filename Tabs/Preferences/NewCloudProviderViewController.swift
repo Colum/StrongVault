@@ -23,7 +23,7 @@ class NewCloudProviderViewController: NSViewController {
     }
     
     func disableUsedCPs() {
-        let usedCPs = CloudProviderManager.shared.usedCloudProviderNames()
+        let usedCPs = CloudProviderManager.shared.usedCloudProviderServiceNames()
         for cp in usedCPs {
             if cp == .dropbox {
                 dropBoxButton.isEnabled = false
