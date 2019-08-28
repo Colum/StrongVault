@@ -15,6 +15,8 @@ class CloudProviderManager {
     
     var providerServices: [CloudProviderProtocol] = []
     
+    var filesUploaded: [String: [String: String]] = [:] // [fileName: [partLocation: partName]]
+    
     
     init() {
         
@@ -84,6 +86,22 @@ class CloudProviderManager {
             }
         }
         return nil
+    }
+    
+    func uploadFile(fileAt: URL) -> Bool {
+        if providerServices.count == 0 {
+            print("there are no cloud services registered!")
+            return false
+        }
+        
+        do {
+            var data = try Data(contentsOf: fileAt)
+            //[fileName: [partLocation: partName]]
+            return true
+        } catch let error {
+            print(error)
+        }
+        return false
     }
 
 }

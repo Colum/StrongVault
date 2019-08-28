@@ -22,6 +22,7 @@ class PreferencesViewController: NSViewController, NSTableViewDataSource, NSTabl
         let integerFormatter = IntegerOnlyValueFormatter()
         partsPerFileTextField.formatter = integerFormatter
         partsPerFileTextField.delegate = self
+        partsPerFileTextField.stringValue = String(PreferencesManager.shared.partsPerFile)
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateTableContent(notification:)), name: Notification.Name("NewCloudProvider"), object: nil)
         

@@ -17,6 +17,8 @@
 		2582D05822EAFCE200F0AB47 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2582D05722EAFCE200F0AB47 /* AppDelegate.swift */; };
 		2582D05C22EAFCE200F0AB47 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2582D05B22EAFCE200F0AB47 /* Assets.xcassets */; };
 		2582D05F22EAFCE200F0AB47 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2582D05D22EAFCE200F0AB47 /* Main.storyboard */; };
+		2590CDBD2317419700368D9C /* MyFilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2590CDBC2317419700368D9C /* MyFilesViewController.swift */; };
+		2590CDBF2317458600368D9C /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2590CDBE2317458600368D9C /* StringExtension.swift */; };
 		25CA5A18230DAE5C00CDB36A /* CredentialsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CA5A17230DAE5C00CDB36A /* CredentialsViewController.swift */; };
 		25CA5A1B230DBEB000CDB36A /* RestClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CA5A1A230DBEB000CDB36A /* RestClient.swift */; };
 		BFF321F4A9F50A196B27791A /* Pods_StrongVault.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7112E1D841ABE1FD4625C8F8 /* Pods_StrongVault.framework */; };
@@ -37,6 +39,8 @@
 		2582D05E22EAFCE200F0AB47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2582D06022EAFCE200F0AB47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2582D06122EAFCE200F0AB47 /* StrongVault.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StrongVault.entitlements; sourceTree = "<group>"; };
+		2590CDBC2317419700368D9C /* MyFilesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFilesViewController.swift; sourceTree = "<group>"; };
+		2590CDBE2317458600368D9C /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		25CA5A17230DAE5C00CDB36A /* CredentialsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialsViewController.swift; sourceTree = "<group>"; };
 		25CA5A1A230DBEB000CDB36A /* RestClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestClient.swift; sourceTree = "<group>"; };
 		4C42197C332125A47FC003EB /* Pods-StrongVault.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StrongVault.debug.xcconfig"; path = "Target Support Files/Pods-StrongVault/Pods-StrongVault.debug.xcconfig"; sourceTree = "<group>"; };
@@ -68,6 +72,7 @@
 		255B83FF22EC4D8C00AF462B /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
+				2590CDBB23173F9300368D9C /* MyFiles */,
 				255B840022EC4E1300AF462B /* Preferences */,
 			);
 			path = Tabs;
@@ -118,6 +123,14 @@
 			path = StrongVault;
 			sourceTree = "<group>";
 		};
+		2590CDBB23173F9300368D9C /* MyFiles */ = {
+			isa = PBXGroup;
+			children = (
+				2590CDBC2317419700368D9C /* MyFilesViewController.swift */,
+			);
+			path = MyFiles;
+			sourceTree = "<group>";
+		};
 		25CA5A14230C80E400CDB36A /* PCloud */ = {
 			isa = PBXGroup;
 			children = (
@@ -130,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				25CA5A1A230DBEB000CDB36A /* RestClient.swift */,
+				2590CDBE2317458600368D9C /* StringExtension.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -273,6 +287,8 @@
 				255B840222EC4E3100AF462B /* PreferencesViewController.swift in Sources */,
 				254152F322F34CF500E3AD76 /* NewCloudProviderViewController.swift in Sources */,
 				254152F722F35D3300E3AD76 /* PCloud.swift in Sources */,
+				2590CDBF2317458600368D9C /* StringExtension.swift in Sources */,
+				2590CDBD2317419700368D9C /* MyFilesViewController.swift in Sources */,
 				25CA5A1B230DBEB000CDB36A /* RestClient.swift in Sources */,
 				250DD8A422EF166700459635 /* IntegerOnlyValueFormatter.swift in Sources */,
 			);
