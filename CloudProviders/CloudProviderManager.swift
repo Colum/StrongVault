@@ -15,7 +15,7 @@ class CloudProviderManager {
     
     var providerServices: [CloudProviderProtocol] = []
     
-    var filesUploaded: [String: [String: String]] = [:] // [fileName: [partLocation: partName]]
+    var filesUploaded: [String: [[String: String]]] = [:] // [fileName: [partLocation: partName]]
     
     
     init() {
@@ -89,19 +89,49 @@ class CloudProviderManager {
     }
     
     func uploadFile(fileAt: URL) -> Bool {
-        if providerServices.count == 0 {
-            print("there are no cloud services registered!")
-            return false
-        }
         
         do {
             var data = try Data(contentsOf: fileAt)
-            //[fileName: [partLocation: partName]]
+            
+            let shardsPerFile = PreferencesManager.shared.partsPerFile
+            let bytesPerShard = Int(ceil(Float(data.count) / Float(shardsPerFile)))
+            let fileName = fileAt.lastPathComponent
+            
+            filesUploaded[fileName] = [[String: String]]()
+            
+            for shardNum in 0..<shardsPerFile {
+                // store the way the file was broken down in memory
+                // [fileName: [[partLocation: partName]]]
+                let randomProvider = providerServices.randomElement()!
+                let randomFileName = randomString()
+                let dict = [randomProvider.storageProviderType.rawValue: randomFileName]
+                
+                filesUploaded[fileName]!.append(dict)
+                
+                var chunk:Data
+                let chunkBase = shardNum * bytesPerShard
+                var diff = bytesPerShard
+                if(shardNum == shardsPerFile - 1) {
+                    diff = data.count - chunkBase
+                }
+                
+                let range:Range<Data.Index> = chunkBase..<(chunkBase + diff)
+                chunk = data.subdata(in: range)
+                randomProvider.uploadPart(name: randomFileName, data: chunk)
+                
+            }
+            
+            
             return true
         } catch let error {
             print(error)
         }
         return false
+    }
+    
+    private func randomString() -> String {
+        let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        return String((0..<10).map{ _ in letters.randomElement()! })
     }
 
 }
@@ -109,8 +139,8 @@ class CloudProviderManager {
 
 protocol CloudProviderProtocol {
     func name() -> String
-    func uploadParts(names: [String], data: [Data])
-    func downloadParts(names: [String]) -> [Data]
+    func uploadPart(name: String, data: Data)
+    func downloadPart(name: String) -> Data
     func login(username: String, password: String) -> Bool?
     var storageProviderType: AvailableStorageProviders { get set }
     // func providerImage() -> Image

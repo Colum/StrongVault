@@ -20,14 +20,14 @@ class PCloudStorageProvider: CloudProviderProtocol {
         return self.storageProviderType.rawValue
     }
     
-    func uploadParts(names: [String], data: [Data]) {
+    func uploadPart(name: String, data: Data) {
         return
     }
     
-    func downloadParts(names: [String]) -> [Data] {
+    func downloadPart(name: String) -> Data {
         //todo
         let d = Data()
-        return [d]
+        return d
     }
     
     func login(username: String, password: String) -> Bool? {
