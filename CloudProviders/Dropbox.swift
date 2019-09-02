@@ -15,7 +15,7 @@ class DropboxStorageProvider: CloudProviderProtocol {
     var client: DropboxClient?
     let homeFolder = "/StrongVault"
     let extensionName = ".dat"
-    var retryData:[String: Data] = [:] // dict which holds data parts which failed to upload due to "too many retries"
+    var retryUploadData:[String: Data] = [:] // dict which holds data parts which failed to upload due to "too many retries"
     
     init() {
         self.storageProviderType = .dropbox
@@ -30,12 +30,12 @@ class DropboxStorageProvider: CloudProviderProtocol {
     
     private func backgroundRetryThread() {
         DispatchQueue.global(qos: .background).async {
-            while true {
-                if let dataToUpload = self.retryData.randomElement() {
+            while true { // is there a better way
+                if let dataToUpload = self.retryUploadData.randomElement() {
                     let fileName = dataToUpload.key
-                    let data = self.retryData[fileName]
+                    let data = self.retryUploadData[fileName]
                     
-                    self.retryData.removeValue(forKey: fileName)
+                    self.retryUploadData.removeValue(forKey: fileName)
                     self.uploadPart(name: fileName, data: data!)
                 }
             }
@@ -72,9 +72,8 @@ class DropboxStorageProvider: CloudProviderProtocol {
         if let cli = client {
             cli.files.upload(path: location , input: data).response { (fileMetaData, errors) in
                 if let errs = errors {
-                    print("--")
                     if errs.description.contains("too_many_write_operations") {
-                        self.retryData[name] = data
+                        self.retryUploadData[name] = data
                     }
                 }
             }
@@ -83,7 +82,21 @@ class DropboxStorageProvider: CloudProviderProtocol {
     
     
     func downloadPart(name: String) -> Data {
-        //todo
+        let path = homeFolder + "/" + name + extensionName
+        if let cli = client {
+            cli.files.download(path: path).response { response, error in
+                if let response = response {
+                    let responseMetadata = response.0
+                    print(responseMetadata)
+                    let fileContents = response.1
+                    print(fileContents)
+                } else if let error = error {
+                    print(error)
+                }
+            }
+        }
+
+        // todo
         let d = Data()
         return d
     }
