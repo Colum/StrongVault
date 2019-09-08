@@ -81,24 +81,19 @@ class DropboxStorageProvider: CloudProviderProtocol {
     }
     
     
-    func downloadPart(name: String) -> Data {
+    func downloadPart(name: String, dataDict: [String:Data]) {
         let path = homeFolder + "/" + name + extensionName
         if let cli = client {
             cli.files.download(path: path).response { response, error in
                 if let response = response {
-                    let responseMetadata = response.0
-                    print(responseMetadata)
+                    // let responseMetadata = response.0
                     let fileContents = response.1
-                    print(fileContents)
+                    // dataDict[name] = fileContents todo fix me
                 } else if let error = error {
                     print(error)
                 }
             }
         }
-
-        // todo
-        let d = Data()
-        return d
     }
     
     

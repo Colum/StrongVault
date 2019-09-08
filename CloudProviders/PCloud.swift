@@ -24,10 +24,8 @@ class PCloudStorageProvider: CloudProviderProtocol {
         return
     }
     
-    func downloadPart(name: String) -> Data {
-        //todo
-        let d = Data()
-        return d
+    func downloadPart(name: String, dataDict: [String : Data]) {
+        
     }
     
     func login(username: String, password: String) -> Bool? {

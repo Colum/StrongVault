@@ -129,6 +129,36 @@ class CloudProviderManager {
         return false
     }
     
+    func downloadFile(fileName: String) {
+        // [partName:Data]]
+        var dataDict:[String:Data] = [:]
+        
+        guard let fileLocation = filesUploaded[fileName] else {
+            print("unknown file: \(fileName)")
+            return
+        }
+        
+        for fileInfo in fileLocation {
+            for part in fileInfo {
+                let cloudService = part.key
+                let partName = part.value
+                
+                if cloudService == AvailableStorageProviders.dropbox.rawValue {
+                    if let dropboxSP = getCloudProviderService(providerType: .dropbox) {
+                        dropboxSP.downloadPart(name: partName, dataDict: dataDict)
+                    }
+                } else if cloudService == AvailableStorageProviders.pCloud.rawValue {
+                    if let pcloudSP = getCloudProviderService(providerType: .pCloud) {
+                        pcloudSP.downloadPart(name: partName, dataDict: dataDict)
+                    }
+                }
+            }
+        }
+        
+        
+        
+    }
+    
     private func randomString() -> String {
         let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
         return String((0..<10).map{ _ in letters.randomElement()! })
@@ -140,7 +170,7 @@ class CloudProviderManager {
 protocol CloudProviderProtocol {
     func name() -> String
     func uploadPart(name: String, data: Data)
-    func downloadPart(name: String) -> Data
+    func downloadPart(name: String, dataDict: [String: Data])
     func login(username: String, password: String) -> Bool?
     var storageProviderType: AvailableStorageProviders { get set }
     // func providerImage() -> Image
